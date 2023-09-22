@@ -1,5 +1,10 @@
+import MainLayout from "./layouts/MainLayout";
 function App() {
-  return <div>Hello World !</div>;
+  return (
+    <div>
+      <MainLayout />
+    </div>
+  );
 }
 
 export default App;

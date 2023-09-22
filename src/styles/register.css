@@ -1,0 +1,12 @@
+.register__left img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.register__right label {
+  color: rgb(7, 81, 74);
+}
+.register__right input::placeholder,
+.register__right input {
+  color: rgb(0, 161, 154) !important;
+}
