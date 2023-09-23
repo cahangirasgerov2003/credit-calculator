@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
 import Calculator from "../pages/Calculator";
+import Converter from "../pages/Converter";
 
 const Routers = () => {
   return (
@@ -14,6 +15,7 @@ const Routers = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/calculator" element={<Calculator />} />
+      <Route path="/converter" element={<Converter />} />
       <Route path="*" element={<NotFound />} />
       <Route />
     </Routes>

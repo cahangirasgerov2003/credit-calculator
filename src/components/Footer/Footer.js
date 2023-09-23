@@ -20,6 +20,10 @@ const quickLinks = [
     path: "/register",
     display: "Register",
   },
+  {
+    path: "/converter",
+    display: "Converter",
+  },
 ];
 
 const footer = () => {

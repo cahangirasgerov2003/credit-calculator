@@ -1,0 +1,54 @@
+.rate {
+  border: 1px solid #e7e7e7;
+  padding: 10px;
+}
+
+.rate__left {
+  border-radius: 10px 0 0 0;
+}
+
+.rate__right {
+  border-radius: 0 10px 0 0;
+}
+
+.rate p {
+  font-size: 20px;
+  margin-bottom: 0;
+  color: rgb(220, 53, 69);
+}
+
+.rate h6 {
+  font-size: 22px;
+  color: rgb(55, 147, 255);
+}
+
+/* input[name="percent"] {
+  border: 1px solid rgb(255, 198, 40);
+  padding: 2px 0 2px 10px;
+  border-radius: 4px;
+} */
+
+input[type="range"] {
+  width: 50%;
+}
+
+.loun__desc p {
+  font-size: 1rem;
+}
+
+/* .table__plan__payment table {
+  border: 1px solid black;
+} */
+
+.desc__calculator {
+  padding: 20px 0 0 0;
+  text-align: center;
+  max-width: 850px;
+  margin: auto;
+}
+
+.desc__calculator {
+  font: normal 16px Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 30px;
+}

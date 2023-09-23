@@ -19,6 +19,10 @@ const navLinks = [
     path: "/calculator",
     display: "Calculator",
   },
+  {
+    path: "/converter",
+    display: "Converter",
+  },
 ];
 
 const Header = () => {
