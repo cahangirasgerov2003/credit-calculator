@@ -1,0 +1,22 @@
+/* .credit__details {
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 20px 0;
+}
+
+.credit__details:first-child {
+  margin-top: 0;
+} */
+
+.creditDetailsContainer {
+  margin: 20px 0;
+}
+
+.creditDetailsContainer h4 {
+  font-size: 18px;
+}
+
+.creditDetailsContainer h5 {
+  font-size: 20px;
+  margin-right: auto;
+}

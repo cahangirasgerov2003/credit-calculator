@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "../../styles/formLoan.css";
+import { connect } from "react-redux";
+import { addLoanToDb } from "../../actions/usersActions";
+import { useNavigate } from "react-router-dom";
+// import { NavLink, Outlet } from "react-router-dom";
 
-const FormLoan = () => {
+const FormLoan = (props) => {
   const [activitySector, setActivitySector] = useState(null);
   const [monthlyIncome, setMonthlyIncome] = useState(null);
   const [workExperience, setWorkExperience] = useState(null);
@@ -9,6 +13,20 @@ const FormLoan = () => {
   const [businessAddress, setBusinessAddress] = useState(null);
   const [loanAmount, setLoanAmount] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setActivitySector(null);
+    setBusinessAddress(null);
+    setError("");
+    setLoanAmount(null);
+    setMonthlyIncome(null);
+    setRegion(null);
+
+    document.querySelector(".feedbackContainer").classList.remove("d-none");
+    document.querySelector(".feedbackContainer").classList.add("d-block");
+  };
 
   const handleLoan = (e) => {
     e.preventDefault();
@@ -22,10 +40,26 @@ const FormLoan = () => {
     ) {
       setError("");
       alert("You have successfully received a loan !");
+      props.dispatch(
+        addLoanToDb(
+          {
+            activitySector,
+            monthlyIncome,
+            workExperience,
+            region,
+            businessAddress,
+            loanAmount,
+          },
+          props.logined.foundUser.id
+        )
+      );
+      navigate("/yourCredits");
     } else {
       setError("Please fill in all fields of the form !");
     }
   };
+
+  //   https://www.linkedin.com/jobs/view/3727469909/
 
   return (
     <div className="col-6">
@@ -124,15 +158,68 @@ const FormLoan = () => {
           ></input>
         </div>
 
+        {/* <nav className="guarantorLink my-2">
+          <NavLink to="guarantor" className="me-3">
+            Add guarantor +
+          </NavLink>
+        </nav>
+
+        <Outlet /> */}
+
         {error ? <small className="text-danger mb-0 h6">{error}</small> : ""}
 
-        <div className="col-12 mt-2">
+        <div className="mt-2 col-12 d-none feedbackContainer">
+          <div className="d-flex flex-column">
+            <label htmlFor="cancelText" className="mb-2 h5">
+              Provide additional feedback
+            </label>
+            <textarea
+              id="cancelText"
+              placeholder="What was the problem? How can we eliminate it?"
+              className="mb-3"
+            ></textarea>
+            <button
+              type="button"
+              className="submitFeedback"
+              onClick={() => {
+                if (document.querySelector("#cancelText").value) {
+                  alert("Thanks for your feedback");
+                  document
+                    .querySelector(".feedbackContainer")
+                    .classList.add("d-none");
+                  document
+                    .querySelector(".feedbackContainer")
+                    .classList.remove("d-block");
+                  document.querySelector("#cancelText").value = "";
+                } else {
+                  alert("You are expected to enter a review !");
+                }
+              }}
+            >
+              Submit Feedback
+            </button>
+          </div>
+        </div>
+
+        <div className="col-6 mt-2">
           <button
             type="button"
-            className="btn btn-success w-100"
+            className="btn confirmButton w-100"
+            style={{ backgroundColor: "green" }}
             onClick={handleLoan}
           >
             Confirm
+          </button>
+        </div>
+
+        <div className="col-6 mt-2">
+          <button
+            type="button"
+            className="btn cencelButton w-100"
+            style={{ backgroundColor: "brown" }}
+            onClick={handleCancel}
+          >
+            Cencel
           </button>
         </div>
       </form>
@@ -140,4 +227,10 @@ const FormLoan = () => {
   );
 };
 
-export default FormLoan;
+const mapStateToProps = (state) => {
+  return {
+    logined: state.logined,
+  };
+};
+
+export default connect(mapStateToProps)(FormLoan);

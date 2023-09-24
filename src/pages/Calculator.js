@@ -14,6 +14,7 @@ const Calculator = () => {
   let balanceDebt = moneyRate;
   let principalAmount = moneyRate;
   let interestAmount = 0;
+  // const [interestAmount, setInterestAmount] = useState(0);
   return (
     <div>
       <h2 className="text-center mb-4">Loan Calculator</h2>
@@ -110,6 +111,8 @@ const Calculator = () => {
               </thead>
               <tbody>
                 {Array.from({ length: monthRate }, (item, index) => {
+                  // setInterestAmount(monthlyPayment - principalAmount);
+
                   balanceDebt =
                     index === 0
                       ? moneyRate - interestAmount

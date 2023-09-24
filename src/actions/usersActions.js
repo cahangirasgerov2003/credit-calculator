@@ -47,6 +47,46 @@ export const addUserToDb = (newUser = {}) => {
   };
 };
 
+// Actions Creater
+export const addLoan = (loan) => {
+  return {
+    type: "ADD__LOAN",
+    loan,
+  };
+};
+
+export const addLoanToDb = (newLoan = {}, id) => {
+  return (dispatch) => {
+    const {
+      activitySector,
+      monthlyIncome,
+      workExperience,
+      region,
+      businessAddress,
+      loanAmount,
+    } = newLoan;
+    database
+      .ref(`users/${id}/loan`)
+      .push({
+        activitySector,
+        monthlyIncome,
+        workExperience,
+        region,
+        businessAddress,
+        loanAmount,
+      })
+      .then((response) => {
+        dispatch(
+          addLoan({
+            id: response.key,
+            ...newLoan,
+            idUser: id,
+          })
+        );
+      });
+  };
+};
+
 // Action Creater
 export const pushStore = (users) => {
   return {

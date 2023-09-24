@@ -5,3 +5,79 @@
 .loan__right input {
   color: rgb(0, 161, 154) !important;
 }
+.guarantorLink a {
+  padding: 6px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 2px solid blue;
+  color: white;
+  background-color: #000d6b;
+}
+
+.guarantorLink a:hover {
+  color: white;
+  background-color: rgb(80, 82, 188);
+}
+
+.guarantorLink a.active {
+  background-color: rgb(80, 82, 188);
+}
+
+/* .confirmButton {
+  background-color: green !important;
+}
+*/
+
+.confirmButton:hover {
+  background-color: rgb(5, 54, 5) !important;
+}
+
+/* 
+.cencelButton {
+  background-color: brown !important;
+} */
+
+.cencelButton:hover {
+  background-color: rgb(53, 4, 4) !important;
+}
+
+.feedbackContainer {
+  padding: 0 12px;
+}
+
+.feedbackContainer div {
+  background-color: rgba(0, 0, 0, 0.438);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.feedbackContainer label {
+  color: rgb(231, 8, 8);
+}
+
+#cancelText::placeholder {
+  color: #000d6b;
+}
+
+#cancelText {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 20px;
+  color: #000d6b;
+}
+
+.submitFeedback {
+  border: none;
+  background-color: #000c6b91;
+  padding: 5px 0;
+  color: white;
+  border-radius: 10px;
+  width: 50%;
+  /* margin: 0 auto; */
+  transition: all 0.9s;
+}
+
+.submitFeedback:hover {
+  background-color: #000d6b;
+}

@@ -10,6 +10,7 @@ import GetLoan from "../pages/GetLoan";
 import YourCredits from "../pages/YourCredits";
 import AboutYou from "../pages/AboutYou";
 import { connect } from "react-redux";
+import Guarantor from "../pages/Guarantor";
 // import { connect } from "react-redux";
 
 const Routers = (props) => {
@@ -22,10 +23,17 @@ const Routers = (props) => {
       <Route path="/calculator" element={<Calculator />} />
       <Route path="/converter" element={<Converter />} />{" "}
       {props.login.position ? (
-        <Route path="/getLoan" element={<GetLoan />} />
+        <Route path="/getLoan" element={<GetLoan />}>
+          <Route path="/getLoan/guarantor" element={<Guarantor />} />
+        </Route>
       ) : (
         ""
       )}
+      {/* {props.login.position ? (
+        <Route path="/getLoan/guarantor" element={<Guarantor />} />
+      ) : (
+        ""
+      )} */}
       {props.login.position ? (
         <Route path="/yourCredits" element={<YourCredits />} />
       ) : (
