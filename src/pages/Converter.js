@@ -107,7 +107,8 @@ const Converter = () => {
                   value={
                     amountValue && !isNaN(amountValue)
                       ? (
-                          (+amountValue / valueType[amountType]) *
+                          +amountValue /
+                          valueType[amountType] /
                           valueType[resultType]
                         ).toFixed(2)
                       : ""

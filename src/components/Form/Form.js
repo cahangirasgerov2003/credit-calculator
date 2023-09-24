@@ -42,6 +42,7 @@ const Form = (props) => {
         password,
         verifyPassword,
       });
+      alert("Registration has been completed successfully !");
     } else {
       setError("Please fill in all fields of the form !");
     }

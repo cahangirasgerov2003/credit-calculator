@@ -14,8 +14,15 @@ import "./index.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
+import { pullDb } from "./actions/usersActions";
+// import { pullDb } from "./actions/usersActions";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+store.dispatch(pullDb()).catch((error) => {
+  alert({ error });
+});
+
 root.render(
   <Provider store={store}>
     <Router>

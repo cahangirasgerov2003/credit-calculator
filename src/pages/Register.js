@@ -4,8 +4,10 @@ import "../styles/register.css";
 import Form from "../components/Form/Form";
 import { connect } from "react-redux";
 import { addUserToDb } from "../actions/usersActions";
+import { useNavigate } from "react-router-dom";
 
 const Register = (props) => {
+  const navigate = useNavigate();
   return (
     <div className="row">
       <div className="col-6 register__left">
@@ -14,6 +16,7 @@ const Register = (props) => {
       <Form
         addForm={(newUser) => {
           props.dispatch(addUserToDb(newUser));
+          navigate("/login");
         }}
       />
     </div>

@@ -46,3 +46,28 @@ export const addUserToDb = (newUser = {}) => {
       });
   };
 };
+
+// Action Creater
+export const pushStore = (users) => {
+  return {
+    type: "PUSH__STORE",
+    users,
+  };
+};
+
+export const pullDb = () => {
+  return async (dispatch) => {
+    const allUsers = [];
+
+    const snapshot = await database.ref("users").once("value");
+
+    snapshot.forEach((user) => {
+      allUsers.push({
+        id: user.key,
+        ...user.val(),
+      });
+    });
+
+    dispatch(pushStore(allUsers));
+  };
+};
