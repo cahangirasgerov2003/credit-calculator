@@ -10,5 +10,6 @@
 >
 > - **React.js**
 > - **React Router**
+> - **React Redux**
 > - **Firebase**
 > - **Bootstrap and Css, Scss**

@@ -7,6 +7,7 @@ const firebaseConfig = {
   storageBucket: "bank-credit-a2975.appspot.com",
   messagingSenderId: "172816219148",
   appId: "1:172816219148:web:e9fe89ff8c3df028278229",
+  databaseURL: "https://bank-credit-a2975-default-rtdb.firebaseio.com",
 };
 
 // Initialize Firebase
