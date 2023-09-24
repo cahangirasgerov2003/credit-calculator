@@ -11,10 +11,16 @@ const FormLogin = (props) => {
 
   const checkForm = () => {
     if (name.length && password.length) {
-      if (checkDb()) {
+      const foundUser = checkDb();
+      if (foundUser) {
         alert("Congratulations, you have successfully logged in");
-        navigate("/home");
-        props.dispatch(login());
+        navigate("/yourCredits");
+        props.dispatch(
+          login({
+            foundUser,
+            position: true,
+          })
+        );
       } else {
         alert(
           "No user matching the parameters you entered was found, please check the login information !"

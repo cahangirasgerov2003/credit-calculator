@@ -11,7 +11,7 @@ const Register = (props) => {
   return (
     <div className="row">
       <div className="col-6 register__left">
-        <img alt="login" src={register}></img>
+        <img alt="register" src={register}></img>
       </div>
       <Form
         addForm={(newUser) => {

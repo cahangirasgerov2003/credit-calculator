@@ -1,7 +1,7 @@
 // Actions Creater
-export const login = () => {
+export const login = (findUser) => {
   return {
     type: "LOGINED",
-    position: true,
+    findUser,
   };
 };

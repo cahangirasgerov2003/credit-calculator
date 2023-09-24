@@ -14,10 +14,11 @@
   font-weight: 500;
 }
 
-.footer__logo-content {
+.footer__logo__content {
   color: rgba(255, 255, 255, 0.715);
   margin-top: 15px;
   line-height: 30px;
+  text-align: justify;
 }
 
 .quick__link {

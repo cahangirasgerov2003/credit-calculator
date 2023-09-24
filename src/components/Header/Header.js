@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
+import { connect } from "react-redux";
 
 const navLinks = [
   {
@@ -23,9 +24,21 @@ const navLinks = [
     path: "/converter",
     display: "Converter",
   },
+  {
+    path: "/getLoan",
+    display: "Get a loan",
+  },
+  {
+    path: "/yourCredits",
+    display: "Your credits",
+  },
+  {
+    path: "/aboutYou",
+    display: "About you",
+  },
 ];
 
-const Header = () => {
+const Header = (props) => {
   const menuRef = useRef(null);
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
@@ -126,17 +139,48 @@ const Header = () => {
 
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <div className="menu">
-                {navLinks.map((item, index) => (
-                  <NavLink
-                    to={item.path}
-                    className={(navClass) =>
-                      navClass.isActive ? "nav__active nav__item" : "nav__item"
-                    }
-                    key={index}
-                  >
-                    {item.display}
-                  </NavLink>
-                ))}
+                {navLinks.map(
+                  (item, index) =>
+                    index <= 4 ? (
+                      <NavLink
+                        to={item.path}
+                        className={(navClass) =>
+                          navClass.isActive
+                            ? "nav__active nav__item"
+                            : "nav__item"
+                        }
+                        key={index}
+                      >
+                        {item.display}
+                      </NavLink>
+                    ) : props.login.position ? (
+                      <NavLink
+                        to={item.path}
+                        className={(navClass) =>
+                          navClass.isActive
+                            ? "nav__active nav__item"
+                            : "nav__item"
+                        }
+                        key={index}
+                      >
+                        {item.display}
+                      </NavLink>
+                    ) : (
+                      ""
+                    )
+
+                  // index <= 4 ? (
+                  //   <li key={index} className="p-0 mt-3 quick__link">
+                  //     <Link to={item.path}>{item.display}</Link>
+                  //   </li>
+                  // ) : props.login ? (
+                  //   <li key={index} className="p-0 mt-3 quick__link">
+                  //     <Link to={item.path}>{item.display}</Link>
+                  //   </li>
+                  // ) : (
+                  //   ""
+                  // )
+                )}
               </div>
             </div>
           </div>
@@ -146,4 +190,10 @@ const Header = () => {
   );
 };
 
-export default Header;
+export const mapStateToProps = (state) => {
+  return {
+    login: state.logined,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

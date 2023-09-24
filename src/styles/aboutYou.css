@@ -1,0 +1,15 @@
+.about__you__right {
+  background-color: #000c6b6e;
+  border-radius: 20px;
+  /* padding: 50px !important; */
+}
+
+.card-title {
+  font-size: 18px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 20px 0;
+}
+
+.card-title:first-child {
+  margin-top: 0;
+}

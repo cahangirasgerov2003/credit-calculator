@@ -1,7 +1,11 @@
-const loginReducers = (state = false, action) => {
+const firstState = {
+  foundUser: null,
+  position: false,
+};
+const loginReducers = (state = firstState, action) => {
   switch (action.type) {
     case "LOGINED":
-      return action.position;
+      return action.findUser;
     default:
       return state;
   }

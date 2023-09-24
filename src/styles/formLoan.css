@@ -1,0 +1,7 @@
+.loan__right label {
+  color: rgb(7, 81, 74);
+}
+.loan__right input::placeholder,
+.loan__right input {
+  color: rgb(0, 161, 154) !important;
+}
