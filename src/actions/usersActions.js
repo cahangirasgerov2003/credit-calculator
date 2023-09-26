@@ -114,7 +114,7 @@ export const pullDb = () => {
 
 // Actions Creater
 export const logoutUser = (removeID) => {
-  console.log("RemoveIDDDDDDDDDDD", removeID);
+  // console.log("RemoveIDDDDDDDDDDD", removeID);
   return {
     type: "LOGOUT__USER",
     removeID,
@@ -123,7 +123,7 @@ export const logoutUser = (removeID) => {
 
 export const logoutUserToDb = (removeID) => {
   const removeRef = database.ref(`users/${removeID}`);
-  console.log("RemoveIDDDDDDDDDDD", removeID);
+  // console.log("RemoveIDDDDDDDDDDD", removeID);
 
   return async (dispatch) => {
     await removeRef.remove();

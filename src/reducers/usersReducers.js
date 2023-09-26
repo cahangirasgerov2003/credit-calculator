@@ -1,7 +1,7 @@
 const userState = [];
 
 const usersReducers = (state = userState, action) => {
-  console.log(state, "state");
+  // console.log(state, "state");
   switch (action.type) {
     case "ADD__USER":
       return [...state, action.user];
@@ -17,9 +17,9 @@ const usersReducers = (state = userState, action) => {
 
     case "LOGOUT__USER":
       let newState = state.filter((user) => {
-        console.log(user, "user");
-        console.log(user.id, "user.id");
-        console.log(action.removeID, "action.removeID");
+        // console.log(user, "user");
+        // console.log(user.id, "user.id");
+        // console.log(action.removeID, "action.removeID");
         return user.id !== action.removeID;
       });
 

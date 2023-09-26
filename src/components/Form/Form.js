@@ -3,16 +3,16 @@ import "../../styles/form.css";
 import { toast } from "react-toastify";
 
 const Form = (props) => {
-  const [userName, setUserName] = useState(null);
-  const [surName, setSurName] = useState(null);
-  const [cardNO, setCardNO] = useState(null);
-  const [personalNO, setPersonalNO] = useState(null);
-  const [acctualAddress, setAcctualAddress] = useState(null);
-  const [registrAddress, setRegistrAddress] = useState(null);
-  const [birthDay, setBirthDay] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [verifyPassword, setverifyPassword] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [surName, setSurName] = useState("");
+  const [cardNO, setCardNO] = useState("");
+  const [personalNO, setPersonalNO] = useState("");
+  const [acctualAddress, setAcctualAddress] = useState("");
+  const [registrAddress, setRegistrAddress] = useState("");
+  const [birthDay, setBirthDay] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [verifyPassword, setverifyPassword] = useState("");
   const [error, setError] = useState("");
 
   const toastSuccess = () => {

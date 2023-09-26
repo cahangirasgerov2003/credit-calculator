@@ -3,7 +3,7 @@ const firstState = {
   position: false,
 };
 const loginReducers = (state = firstState, action) => {
-  console.log("logoutState", state);
+  // console.log("logoutState", state);
   switch (action.type) {
     case "LOGINED":
       return action.findUser;
