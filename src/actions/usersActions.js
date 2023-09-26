@@ -67,7 +67,7 @@ export const addLoanToDb = (newLoan = {}, id) => {
     } = newLoan;
     database
       .ref(`users/${id}/loan`)
-      .push({
+      .set({
         activitySector,
         monthlyIncome,
         workExperience,
@@ -75,10 +75,10 @@ export const addLoanToDb = (newLoan = {}, id) => {
         businessAddress,
         loanAmount,
       })
-      .then((response) => {
+      .then(() => {
         dispatch(
           addLoan({
-            id: response.key,
+            // id: response.key,
             ...newLoan,
             idUser: id,
           })
@@ -109,5 +109,24 @@ export const pullDb = () => {
     });
 
     dispatch(pushStore(allUsers));
+  };
+};
+
+// Actions Creater
+export const logoutUser = (removeID) => {
+  console.log("RemoveIDDDDDDDDDDD", removeID);
+  return {
+    type: "LOGOUT__USER",
+    removeID,
+  };
+};
+
+export const logoutUserToDb = (removeID) => {
+  const removeRef = database.ref(`users/${removeID}`);
+  console.log("RemoveIDDDDDDDDDDD", removeID);
+
+  return async (dispatch) => {
+    await removeRef.remove();
+    dispatch(logoutUser(removeID));
   };
 };

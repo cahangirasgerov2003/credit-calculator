@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "../../styles/header.css";
 import { connect } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import { logoutUserToDb } from "../../actions/usersActions";
+// import { logout } from "../../actions/loginActions";
 const navLinks = [
   {
     path: "/home",
@@ -52,6 +55,8 @@ const Header = (props) => {
     });
   };
 
+  // const navigate = useNavigate();
+
   return (
     <header className="header">
       <div className="header__top">
@@ -67,22 +72,30 @@ const Header = (props) => {
             </div>
             <div className="col-6">
               <div className="header__top__right">
-                <Link to="/login" className="d-flex align-items-center gap-1">
-                  <i className="ri-login-circle-line"></i>Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="d-flex align-items-center gap-1"
-                >
-                  <i className="ri-user-settings-line"></i>Register
-                </Link>
-                {props.login.position ? (
-                  <Link to="#" className="d-flex align-items-center gap-1">
-                    <i class="ri-logout-circle-line"></i>Logout
+                {/* {props.login.position ? (
+                  <Link
+                    to="#"
+                    className="d-flex align-items-center gap-2"
+                    onClick={() => {
+                      navigate("/home");
+                      props.dispatch(logoutUserToDb(props.login.foundUser.id));
+                      props.dispatch(logout());
+                    }}
+                  >
+                    Logout<i className="ri-logout-box-line"></i>
                   </Link>
                 ) : (
                   ""
-                )}
+                )} */}
+                <Link to="/login" className="d-flex align-items-center gap-2">
+                  Login<i className="ri-login-box-line"></i>
+                </Link>
+                <Link
+                  to="/register"
+                  className="d-flex align-items-center gap-2"
+                >
+                  Register<i className="ri-user-settings-line"></i>
+                </Link>
               </div>
             </div>
           </div>
@@ -140,7 +153,6 @@ const Header = (props) => {
                   <Link
                     to="#"
                     onClick={() => {
-                      console.log("hm");
                       toastControl();
                     }}
                   >

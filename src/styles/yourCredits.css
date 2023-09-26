@@ -10,3 +10,9 @@
   font-size: 20px;
   margin-right: auto;
 }
+
+.your__credits__right {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+}

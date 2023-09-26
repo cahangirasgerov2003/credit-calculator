@@ -29,7 +29,7 @@
 
 .header__top__right {
   justify-content: flex-end;
-  column-gap: 8px;
+  column-gap: 30px;
 }
 
 .header__top__right i {

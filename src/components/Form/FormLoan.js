@@ -3,25 +3,27 @@ import "../../styles/formLoan.css";
 import { connect } from "react-redux";
 import { addLoanToDb } from "../../actions/usersActions";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const FormLoan = (props) => {
-  const [activitySector, setActivitySector] = useState(null);
-  const [monthlyIncome, setMonthlyIncome] = useState(null);
-  const [workExperience, setWorkExperience] = useState(null);
-  const [region, setRegion] = useState(null);
-  const [businessAddress, setBusinessAddress] = useState(null);
-  const [loanAmount, setLoanAmount] = useState(null);
+  const [activitySector, setActivitySector] = useState("");
+  const [monthlyIncome, setMonthlyIncome] = useState("");
+  const [workExperience, setWorkExperience] = useState("");
+  const [region, setRegion] = useState("");
+  const [businessAddress, setBusinessAddress] = useState("");
+  const [loanAmount, setLoanAmount] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleCancel = (e) => {
     e.preventDefault();
-    setActivitySector(null);
-    setBusinessAddress(null);
+    setActivitySector("");
+    setBusinessAddress("");
     setError("");
-    setLoanAmount(null);
-    setMonthlyIncome(null);
-    setRegion(null);
+    setLoanAmount("");
+    setMonthlyIncome("");
+    setRegion("");
+    setWorkExperience("");
 
     document.querySelector(".feedbackContainer").classList.remove("d-none");
     document.querySelector(".feedbackContainer").classList.add("d-block");
@@ -29,33 +31,51 @@ const FormLoan = (props) => {
 
   const handleLoan = (e) => {
     e.preventDefault();
-    if (
-      activitySector &&
-      monthlyIncome &&
-      workExperience &&
-      region &&
-      businessAddress &&
-      loanAmount
-    ) {
-      setError("");
-      alert("You have successfully received a loan !");
-      props.dispatch(
-        addLoanToDb(
-          {
-            activitySector,
-            monthlyIncome,
-            workExperience,
-            region,
-            businessAddress,
-            loanAmount,
-          },
-          props.logined.foundUser.id
-        )
-      );
-      navigate("/yourCredits");
+    if (!props.logined.foundUser.loan) {
+      if (
+        activitySector &&
+        monthlyIncome &&
+        workExperience &&
+        region &&
+        businessAddress &&
+        loanAmount
+      ) {
+        setError("");
+        toast.success("You have successfully received a loan", {
+          autoClose: 2000,
+          pauseOnHover: false,
+          pauseOnFocusLoss: false,
+        });
+        props.dispatch(
+          addLoanToDb(
+            {
+              activitySector,
+              monthlyIncome,
+              workExperience,
+              region,
+              businessAddress,
+              loanAmount,
+            },
+            props.logined.foundUser.id
+          )
+        );
+        navigate("/yourCredits");
+      } else {
+        setError("Please fill in all fields of the form !");
+      }
     } else {
-      setError("Please fill in all fields of the form !");
+      toast.warning("You already have credit !", {
+        autoClose: 2000,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+      });
     }
+    setActivitySector("");
+    setBusinessAddress("");
+    setLoanAmount("");
+    setMonthlyIncome("");
+    setRegion("");
+    setWorkExperience("");
   };
 
   return (
@@ -74,6 +94,7 @@ const FormLoan = (props) => {
             className="form-control"
             id="activitySector"
             placeholder="Frontend Engeener"
+            value={activitySector}
             onChange={(e) => {
               setActivitySector(e.target.value);
             }}
@@ -89,6 +110,7 @@ const FormLoan = (props) => {
             className="form-control"
             id="monthlyIncome"
             placeholder="2000"
+            value={monthlyIncome}
             onChange={(e) => {
               setMonthlyIncome(e.target.value);
             }}
@@ -104,6 +126,7 @@ const FormLoan = (props) => {
             className="form-control"
             id="workExperience"
             placeholder="3 years and 6 months"
+            value={workExperience}
             onChange={(e) => {
               setWorkExperience(e.target.value);
             }}
@@ -119,6 +142,7 @@ const FormLoan = (props) => {
             className="form-control"
             id="region"
             placeholder="Baku"
+            value={region}
             onChange={(e) => {
               setRegion(e.target.value);
             }}
@@ -134,6 +158,7 @@ const FormLoan = (props) => {
             className="form-control"
             id="businessAddress"
             placeholder="Prosol"
+            value={businessAddress}
             onChange={(e) => {
               setBusinessAddress(e.target.value);
             }}
@@ -149,6 +174,7 @@ const FormLoan = (props) => {
             className="form-control"
             id="loanAmount"
             placeholder="10000"
+            value={loanAmount}
             onChange={(e) => {
               setLoanAmount(e.target.value);
             }}
@@ -172,7 +198,11 @@ const FormLoan = (props) => {
               className="submitFeedback"
               onClick={() => {
                 if (document.querySelector("#cancelText").value) {
-                  alert("Thanks for your feedback");
+                  toast.success("Thanks for your feedback", {
+                    autoClose: 2000,
+                    pauseOnHover: false,
+                    pauseOnFocusLoss: false,
+                  });
                   document
                     .querySelector(".feedbackContainer")
                     .classList.add("d-none");
@@ -181,7 +211,11 @@ const FormLoan = (props) => {
                     .classList.remove("d-block");
                   document.querySelector("#cancelText").value = "";
                 } else {
-                  alert("You are expected to enter a review !");
+                  toast.error("You are expected to enter a review !", {
+                    autoClose: 2000,
+                    pauseOnHover: false,
+                    pauseOnFocusLoss: false,
+                  });
                 }
               }}
             >

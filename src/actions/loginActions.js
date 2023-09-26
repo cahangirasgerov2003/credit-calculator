@@ -5,3 +5,9 @@ export const login = (findUser) => {
     findUser,
   };
 };
+
+export const logout = () => {
+  return {
+    type: "LOGOUT__USER",
+  };
+};

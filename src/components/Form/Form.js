@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
+import { toast } from "react-toastify";
 
 const Form = (props) => {
   const [userName, setUserName] = useState(null);
@@ -13,6 +14,14 @@ const Form = (props) => {
   const [password, setPassword] = useState(null);
   const [verifyPassword, setverifyPassword] = useState(null);
   const [error, setError] = useState("");
+
+  const toastSuccess = () => {
+    toast.success("Registration has been completed successfully", {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
 
   const handleRegiter = (e) => {
     e.preventDefault();
@@ -42,7 +51,7 @@ const Form = (props) => {
         password,
         verifyPassword,
       });
-      alert("Registration has been completed successfully !");
+      toastSuccess();
     } else {
       setError("Please fill in all fields of the form !");
     }

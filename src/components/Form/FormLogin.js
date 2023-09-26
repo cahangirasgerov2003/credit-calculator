@@ -3,17 +3,42 @@ import "../../styles/formLogin.css";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../actions/loginActions";
+import { toast } from "react-toastify";
 
 const FormLogin = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const toastError = () => {
+    toast.error("You are required to fill in all fields !", {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
+
+  const toastWarning = () => {
+    toast.error("User not found !", {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
+
+  const toastSuccess = () => {
+    toast.success("Congratulations, you have successfully logged in", {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
+
   const checkForm = () => {
     if (name.length && password.length) {
       const foundUser = checkDb();
       if (foundUser) {
-        alert("Congratulations, you have successfully logged in");
+        toastSuccess();
         navigate("/yourCredits");
         props.dispatch(
           login({
@@ -22,12 +47,10 @@ const FormLogin = (props) => {
           })
         );
       } else {
-        alert(
-          "No user matching the parameters you entered was found, please check the login information !"
-        );
+        toastWarning();
       }
     } else {
-      alert("You are required to fill in all fields !");
+      toastError();
     }
     setPassword("");
     setName("");
