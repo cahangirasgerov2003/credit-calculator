@@ -34,10 +34,6 @@ const FormLogin = (props) => {
   };
 
   const checkDb = () => {
-    // const result = props.users.find((user)=>{
-    //     return (user.userName === name && password === user.password)
-    // });
-    // console.log(result);
     const searchedUser = props.users.find((user) => {
       return user.password === password && user.userName === name;
     });
@@ -49,15 +45,6 @@ const FormLogin = (props) => {
     <form className="row">
       <div className="col-12 mt-2">
         <h4 className="text-center h2">Log in to your account</h4>
-        {/* <small className="text-primary h6">
-          <p className="mb-2">
-            If you are registered, you can login and get a loan and view your
-            loan information
-          </p>
-          <div className="d-flex justify-content-center">
-            <i className="ri-bank-line" style={{ fontSize: 30 + "px" }}></i>
-          </div>
-        </small> */}
       </div>
       <div className="col-12 mt-2">
         <label htmlFor="name" className="form-label">

@@ -2,16 +2,12 @@ import React from "react";
 import "../../styles/footer.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 
 const quickLinks = [
   {
     path: "/home",
     display: "Home",
-  },
-
-  {
-    path: "#",
-    display: "Privacy Policy",
   },
   {
     path: "/login",
@@ -42,6 +38,23 @@ const quickLinks = [
 const Footer = (props) => {
   const data = new Date();
   const year = data.getFullYear();
+
+  const toastSuccess = () => {
+    toast.success(`Message sent`, {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
+
+  const toastDanger = () => {
+    toast.error(`Enter a message`, {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -52,7 +65,6 @@ const Footer = (props) => {
                 className="d-inline-block 
               "
               >
-                {/* d-flex justify-content-center */}
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-2">
                     <i className="ri-bank-line"></i>
@@ -75,7 +87,7 @@ const Footer = (props) => {
               <h5 className="footer__link-title">Quick Links</h5>
               <ul>
                 {quickLinks.map((item, index) =>
-                  index <= 4 ? (
+                  index <= 3 ? (
                     <li key={index} className="p-0 mt-3 quick__link">
                       <Link to={item.path}>{item.display}</Link>
                     </li>
@@ -113,8 +125,12 @@ const Footer = (props) => {
                   <i
                     className="ri-send-plane-line"
                     onClick={() => {
-                      alert("Your message was delivered successfully !");
-                      document.querySelector("#usMessage").value = "";
+                      if (document.querySelector("#usMessage").value !== "") {
+                        toastSuccess();
+                        document.querySelector("#usMessage").value = "";
+                      } else {
+                        toastDanger();
+                      }
                     }}
                   ></i>
                 </span>

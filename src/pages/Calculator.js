@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/calculator.css";
+import { v4 as uuidv4 } from "uuid";
 
 const Calculator = () => {
   const [moneyRate, setMoneyRate] = useState(10000);
@@ -12,9 +13,10 @@ const Calculator = () => {
   ).toFixed(2);
 
   let balanceDebt = moneyRate;
-  let principalAmount = moneyRate;
+  let principalAmount = 0;
   let interestAmount = 0;
-  // const [interestAmount, setInterestAmount] = useState(0);
+  const totalPayment = monthlyPayment * monthRate;
+
   return (
     <div>
       <h2 className="text-center mb-4">Loan Calculator</h2>
@@ -22,7 +24,6 @@ const Calculator = () => {
         <div className="col-4 rate__left rate">
           <h6>Loan amount</h6>
           <div className="d-flex justify-content-between align-items-center my-2">
-            {/* <input type="number" name="percent" value={moneyRate} /> */}
             <h3>{moneyRate}</h3>
             <div>
               <p>AZN</p>
@@ -43,7 +44,6 @@ const Calculator = () => {
         <div className="col-4 rate__center rate">
           <h6>Term</h6>
           <div className="d-flex justify-content-between align-items-center my-2">
-            {/* <input type="number" name="percent" value={monthRate} /> */}
             <h3>{monthRate}</h3>
             <div>
               <p>Month</p>
@@ -64,14 +64,6 @@ const Calculator = () => {
         <div className="col-4 rate__right rate">
           <h6>Interest rate</h6>
           <div className="d-flex justify-content-between align-items-center my-2">
-            {/* <input
-              type="number"
-              name="percent"
-              value={rate}
-              onChange={(e) => {
-                console.log(e);
-              }}
-            /> */}
             <h3>{rate}</h3>
             <div>
               <p>%</p>
@@ -99,7 +91,7 @@ const Calculator = () => {
         </div>
         <div className="col-12 table__plan__payment mt-4 d-none">
           <div>
-            <table className="table text-center">
+            <table className="table text-center resultLoanTable">
               <thead className="table-dark">
                 <tr>
                   <th scope="col">No</th>
@@ -111,19 +103,11 @@ const Calculator = () => {
               </thead>
               <tbody>
                 {Array.from({ length: monthRate }, (item, index) => {
-                  // setInterestAmount(monthlyPayment - principalAmount);
-
-                  balanceDebt =
-                    index === 0
-                      ? moneyRate - interestAmount
-                      : balanceDebt - interestAmount;
-
-                  principalAmount =
-                    index === 0
-                      ? moneyRate * rateForMonth
-                      : balanceDebt * rateForMonth;
+                  principalAmount = balanceDebt * rateForMonth;
 
                   interestAmount = monthlyPayment - principalAmount;
+
+                  balanceDebt = balanceDebt - interestAmount;
 
                   return (
                     <tr key={index}>
@@ -135,6 +119,13 @@ const Calculator = () => {
                     </tr>
                   );
                 })}
+                <tr key={uuidv4} className="text-danger">
+                  <th scope="row">Total</th>
+                  <td>{totalPayment.toFixed(2)}</td>
+                  <td>{moneyRate}</td>
+                  <td>{(totalPayment - moneyRate).toFixed(2)}</td>
+                  <td>0</td>
+                </tr>
               </tbody>
             </table>
           </div>

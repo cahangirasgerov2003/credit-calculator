@@ -3,7 +3,6 @@ import "../../styles/formLoan.css";
 import { connect } from "react-redux";
 import { addLoanToDb } from "../../actions/usersActions";
 import { useNavigate } from "react-router-dom";
-// import { NavLink, Outlet } from "react-router-dom";
 
 const FormLoan = (props) => {
   const [activitySector, setActivitySector] = useState(null);
@@ -58,8 +57,6 @@ const FormLoan = (props) => {
       setError("Please fill in all fields of the form !");
     }
   };
-
-  //   https://www.linkedin.com/jobs/view/3727469909/
 
   return (
     <div className="col-6">
@@ -157,14 +154,6 @@ const FormLoan = (props) => {
             }}
           ></input>
         </div>
-
-        {/* <nav className="guarantorLink my-2">
-          <NavLink to="guarantor" className="me-3">
-            Add guarantor +
-          </NavLink>
-        </nav>
-
-        <Outlet /> */}
 
         {error ? <small className="text-danger mb-0 h6">{error}</small> : ""}
 

@@ -23,19 +23,9 @@
   background-color: rgb(80, 82, 188);
 }
 
-/* .confirmButton {
-  background-color: green !important;
-}
-*/
-
 .confirmButton:hover {
   background-color: rgb(5, 54, 5) !important;
 }
-
-/* 
-.cencelButton {
-  background-color: brown !important;
-} */
 
 .cencelButton:hover {
   background-color: rgb(53, 4, 4) !important;
@@ -74,7 +64,6 @@
   color: white;
   border-radius: 10px;
   width: 50%;
-  /* margin: 0 auto; */
   transition: all 0.9s;
 }
 

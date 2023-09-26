@@ -11,7 +11,6 @@ import YourCredits from "../pages/YourCredits";
 import AboutYou from "../pages/AboutYou";
 import { connect } from "react-redux";
 import Guarantor from "../pages/Guarantor";
-// import { connect } from "react-redux";
 
 const Routers = (props) => {
   return (
@@ -29,11 +28,6 @@ const Routers = (props) => {
       ) : (
         ""
       )}
-      {/* {props.login.position ? (
-        <Route path="/getLoan/guarantor" element={<Guarantor />} />
-      ) : (
-        ""
-      )} */}
       {props.login.position ? (
         <Route path="/yourCredits" element={<YourCredits />} />
       ) : (
@@ -51,7 +45,6 @@ const Routers = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  // console.log(state.logined);
   return {
     login: state.logined,
   };

@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
 import { connect } from "react-redux";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const navLinks = [
   {
     path: "/home",
@@ -42,6 +43,15 @@ const Header = (props) => {
   const menuRef = useRef(null);
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
+
+  const toastControl = () => {
+    toast.warn("Something went wrong !", {
+      autoClose: 2000,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+    });
+  };
+
   return (
     <header className="header">
       <div className="header__top">
@@ -66,6 +76,13 @@ const Header = (props) => {
                 >
                   <i className="ri-user-settings-line"></i>Register
                 </Link>
+                {props.login.position ? (
+                  <Link to="#" className="d-flex align-items-center gap-1">
+                    <i class="ri-logout-circle-line"></i>Logout
+                  </Link>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
@@ -120,7 +137,13 @@ const Header = (props) => {
             <div className="col-2 d-flex align-items-center">
               <div className="header__middle__request d-flex align-items-center justify-content-end">
                 <button className="btn request__btn">
-                  <Link to="#">
+                  <Link
+                    to="#"
+                    onClick={() => {
+                      console.log("hm");
+                      toastControl();
+                    }}
+                  >
                     <i className="ri-phone-line"></i>Request a call
                   </Link>
                 </button>
@@ -139,53 +162,41 @@ const Header = (props) => {
 
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <div className="menu">
-                {navLinks.map(
-                  (item, index) =>
-                    index <= 4 ? (
-                      <NavLink
-                        to={item.path}
-                        className={(navClass) =>
-                          navClass.isActive
-                            ? "nav__active nav__item"
-                            : "nav__item"
-                        }
-                        key={index}
-                      >
-                        {item.display}
-                      </NavLink>
-                    ) : props.login.position ? (
-                      <NavLink
-                        to={item.path}
-                        className={(navClass) =>
-                          navClass.isActive
-                            ? "nav__active nav__item"
-                            : "nav__item"
-                        }
-                        key={index}
-                      >
-                        {item.display}
-                      </NavLink>
-                    ) : (
-                      ""
-                    )
-
-                  // index <= 4 ? (
-                  //   <li key={index} className="p-0 mt-3 quick__link">
-                  //     <Link to={item.path}>{item.display}</Link>
-                  //   </li>
-                  // ) : props.login ? (
-                  //   <li key={index} className="p-0 mt-3 quick__link">
-                  //     <Link to={item.path}>{item.display}</Link>
-                  //   </li>
-                  // ) : (
-                  //   ""
-                  // )
+                {navLinks.map((item, index) =>
+                  index <= 4 ? (
+                    <NavLink
+                      to={item.path}
+                      className={(navClass) =>
+                        navClass.isActive
+                          ? "nav__active nav__item"
+                          : "nav__item"
+                      }
+                      key={index}
+                    >
+                      {item.display}
+                    </NavLink>
+                  ) : props.login.position ? (
+                    <NavLink
+                      to={item.path}
+                      className={(navClass) =>
+                        navClass.isActive
+                          ? "nav__active nav__item"
+                          : "nav__item"
+                      }
+                      key={index}
+                    >
+                      {item.display}
+                    </NavLink>
+                  ) : (
+                    ""
+                  )
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </header>
   );
 };

@@ -22,12 +22,6 @@
   color: rgb(55, 147, 255);
 }
 
-/* input[name="percent"] {
-  border: 1px solid rgb(255, 198, 40);
-  padding: 2px 0 2px 10px;
-  border-radius: 4px;
-} */
-
 input[type="range"] {
   width: 50%;
 }
@@ -35,10 +29,6 @@ input[type="range"] {
 .loun__desc p {
   font-size: 1rem;
 }
-
-/* .table__plan__payment table {
-  border: 1px solid black;
-} */
 
 .desc__calculator {
   padding: 20px 0 0 0;

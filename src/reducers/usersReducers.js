@@ -1,5 +1,3 @@
-// import { connect } from "react-redux";
-
 const userState = [];
 
 const usersReducers = (state = userState, action) => {
@@ -20,30 +18,14 @@ const usersReducers = (state = userState, action) => {
         return user.id === action.loan.idUser;
       });
 
-      // Yeni bir kullanıcı nesnesi oluşturun ve sadece loan özelliğini güncelleyin
-
       console.log(updatedUser, "update");
 
       updatedUser["loan"] = action.loan;
-
-      // let updatedUserWithLoan = {
-      //   updatedUser.loan = action.loan,
-      // };
-
-      // console.log(updatedUserWithLoan);
-
-      // Güncellenmiş kullanıcıyı içeren yeni bir dizi döndürün
       return [...state, updatedUser];
 
     default:
       return state;
   }
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     logined: state.logined,
-//   };
-// };
 
 export default usersReducers;
